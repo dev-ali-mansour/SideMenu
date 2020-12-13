@@ -30,39 +30,14 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show());
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationView navigationView = findViewById(R.id.nav_view);
-/*
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_home:
-                        Toast.makeText(MainActivity.this,"Home",Toast.LENGTH_LONG).show();
-                        navController.navigate(R.id.nav_home);
-                        return true;
-                    case R.id.action_gallery:
-                        Toast.makeText(MainActivity.this,"Gallery",Toast.LENGTH_LONG).show();
-                        navController.navigate(R.id.nav_gallery);
-                        return true;
-                    case R.id.action_slideshow:
-                        Toast.makeText(MainActivity.this,"Slideshow",Toast.LENGTH_LONG).show();
-                        navController.navigate(R.id.nav_slideshow);
-                        return true;
-                    default:
-                        Toast.makeText(MainActivity.this,"Unspecified",Toast.LENGTH_LONG).show();
-                        return false;
-                }
-            }
-        });
-*/
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                .setDrawerLayout(drawer)
+                .setOpenableLayout(drawer)
                 .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
@@ -80,4 +55,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }
